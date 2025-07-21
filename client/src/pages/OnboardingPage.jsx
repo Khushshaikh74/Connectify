@@ -5,7 +5,7 @@ import { completeOnboard } from '../lib/api.js'
 import toast from 'react-hot-toast'
 import { CameraIcon, ShuffleIcon, MapPinIcon, Workflow, LoaderIcon } from 'lucide-react'
 import { LANGUAGES } from '../constants/index.js'
-import PageLoader from '../components/pageLoader.jsx'
+import PageLoader from '../components/PageLoader.jsx'
 
 const OnboardingPage = () => {
   const { user, isLoading } = useAuthUser()
