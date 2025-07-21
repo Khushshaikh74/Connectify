@@ -39,11 +39,11 @@ const register = async (req, res, next) => {
 
         const token = await user.generateToken();
         res.cookie("jwt", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        });
+          httpOnly: true,
+          secure: true,            // Always true for deployed (HTTPS)
+          sameSite: "None",        // Required for cross-site cookies
+          maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
 
         res.status(201).json({
             success: true,
@@ -78,9 +78,9 @@ const login = async (req, res, next) => {
         const token = await user.generateToken();
         res.cookie("jwt", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            secure: true,           // Always true for production (HTTPS)
+            sameSite: "None",       // ✅ Required for cross-site
+            maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
         res.status(200).json({ success: true, user });
